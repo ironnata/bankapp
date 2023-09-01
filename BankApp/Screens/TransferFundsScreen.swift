@@ -9,8 +9,17 @@
 import SwiftUI
 
 struct TransferFundsScreen: View {
+    
+    @ObservedObject private var transferFundsVM = TransferFundsViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            AccountListView(accounts: self.transferFundsVM.accounts)
+            
+                .onAppear {
+                    self.transferFundsVM.populateAccounts()
+            }
+        }
     }
 }
 
